@@ -3,12 +3,12 @@ import cors from "cors";
 import { app } from "../app";
 import type { NextFunction, Request, Response } from "express";
 
-const rateLimitMinutes = 15;
-const rateLimitSeconds = 60;
-const rateLimitMiliseconds = 1000;
+const MINUTES = 15;
+const SECONDS = 60;
+const MILLISECONDS = 1000;
 
 export const rateLimitServer = rateLimit({
-    windowMs: rateLimitMinutes * rateLimitSeconds * rateLimitMiliseconds,
+    windowMs: MINUTES * SECONDS * MILLISECONDS,
     max: 100,
     message:
         "Muitas requisições foram solicitadas nesse IP, por favor, aguarde 15 minutos",
@@ -16,7 +16,7 @@ export const rateLimitServer = rateLimit({
 
 export const corsConfig = (req: Request, res: Response, next: NextFunction) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET");
+    res.header("Access-Control-Allow-Methods", "POST");
     app.use(cors());
     next();
 };
