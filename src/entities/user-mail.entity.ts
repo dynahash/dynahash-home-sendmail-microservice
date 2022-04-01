@@ -3,5 +3,7 @@ export class UserMail {
 
     public subject: string;
 
-    public text: string;
+    public text?: string;
+
+    public html?: string;
 }
