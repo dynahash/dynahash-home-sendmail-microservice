@@ -7,7 +7,11 @@ import type { Request, Response } from "express";
 export const sendMailController = (req: Request, res: Response): Response => {
     const body = req.body as UserMail;
 
-    SendMail.send(body);
+    try {
+        SendMail.send(body);
+    } catch (err) {
+        return res.status(StatusCodeEnum.CONFLICT).json(err.message);
+    }
 
     log.info("Email has been sended");
 

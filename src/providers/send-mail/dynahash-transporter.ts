@@ -22,7 +22,4 @@ const transporterConfig: Transporter = {
     },
 };
 
-console.log(transporterConfig);
-
-
 export const transporter = nodemailer.createTransport(transporterConfig);
