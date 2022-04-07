@@ -4,11 +4,11 @@ import { StatusCodeEnum } from "./../../enums/status-code";
 import type { UserMail } from "./../../entities/user-mail.entity";
 import type { Request, Response } from "express";
 
-export const sendMailController = (req: Request, res: Response): Response => {
+export const sendMailController = async (req: Request, res: Response): Promise<Response> => {
     const body = req.body as UserMail;
 
     try {
-        SendMail.send(body);
+        await SendMail.send(body);
     } catch (err) {
         return res.status(StatusCodeEnum.CONFLICT).json(err.message);
     }
